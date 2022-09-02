@@ -16,6 +16,7 @@
     "@emotion/styled": "^11.10.4",
     "@rainbow-me/rainbowkit": "^0.5.0",
     "dayjs": "^1.11.5",
+    "ethers": "5.7.0",
     "framer-motion": "^7.2.1",
     "graphql": "^16.6.0",
     "js-cookie": "^3.0.1",
