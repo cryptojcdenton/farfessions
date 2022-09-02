@@ -14,7 +14,7 @@ export const prod = {
   SERVER_URI: "https://protocol.beb.xyz",
   AUTH_KEY: "beb-yikyak-auth-token-prod",
   COOKIE_DOMAIN: ".farfessions.xyz",
-  COMMUNITY_BEBDOMAIN: "bebcasters",
+  COMMUNITY_BEBDOMAIN: "bebcaster",
 };
 
 const config = process.env.NODE_ENV === "production" ? prod : dev;
