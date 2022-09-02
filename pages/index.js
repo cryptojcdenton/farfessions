@@ -43,11 +43,12 @@ export default function Home() {
                 m="auto"
                 textAlign={"center"}
               >
-                Talk about Farcaster as Anon!
+                Talk about Farcaster anonymously!
               </Heading>
               <Text textAlign={"center"}>
                 Make sure to sign in with your connected Farcaster address. Only
-                Farcaster users can post to BEBcaster.
+                Farcaster users can post to BEBcaster. We don't track who made
+                the post.
               </Text>
               <CreatePostInput bebdomain={COMMUNITY_BEBDOMAIN} />
               <PostFeed bebdomain={COMMUNITY_BEBDOMAIN} />
