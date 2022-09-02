@@ -5,7 +5,7 @@ export const GET_CURRENT_ACCOUNT = gql`
   ${CORE_ACCOUNT_FIELDS}
   query GET_CURRENT_ACCOUNT {
     getCurrentAccount {
-      ...CORE_ACCOUNT_FIELDS
+      ...CoreAccountFields
       identities {
         farcaster {
           username
