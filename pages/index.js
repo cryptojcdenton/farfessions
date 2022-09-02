@@ -45,7 +45,7 @@ export default function Home() {
               >
                 Publish to Farcaster as Anon!
               </Heading>
-              <Text>
+              <Text textAlign={"center"}>
                 Make sure to sign in with your connected Farcaster address. Only
                 Farcaster users can post.
               </Text>

@@ -13,7 +13,7 @@ export const dev = {
 export const prod = {
   SERVER_URI: "https://protocol.beb.xyz",
   AUTH_KEY: "beb-yikyak-auth-token-prod",
-  COOKIE_DOMAIN: ".farfessions.vercel.app",
+  COOKIE_DOMAIN: ".farfessions.xyz",
   COMMUNITY_BEBDOMAIN: "bebcasters",
 };
 
