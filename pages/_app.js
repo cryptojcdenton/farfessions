@@ -20,7 +20,7 @@ const { chains, provider } = configureChains(
 );
 
 const { connectors } = getDefaultWallets({
-  appName: "Beb Communities",
+  appName: "Beb",
   chains,
 });
 
