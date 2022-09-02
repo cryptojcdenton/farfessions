@@ -2,6 +2,7 @@ import React from "react";
 import Cookies from "js-cookie";
 import { Box, Button, Textarea, useToast } from "@chakra-ui/react";
 
+import { client } from "../../utils/apollo/client";
 import { config } from "../../utils/config";
 
 import { MustBeSignedIn } from "../account/MustBeSignedIn";
@@ -34,6 +35,9 @@ export const CreatePostInput = ({ bebdomain }) => {
       setLoading(false);
       if (res.ok) {
         setValue("");
+        await client.refetchQueries({
+          include: ["GET_POST_FEED"],
+        });
         toast({
           position: "top",
           status: "success",

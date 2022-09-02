@@ -26,6 +26,6 @@ export const useCurrentAccountCommunityPermissions = () => {
     getCommunityByDomain,
     loading: loading,
     error: error,
-    account: data?.CommunityQuery?.getCommunityByDomainOrTokenId,
+    community: data?.CommunityQuery?.getCommunityByDomainOrTokenId,
   };
 };
