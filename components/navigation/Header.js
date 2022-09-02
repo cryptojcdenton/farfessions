@@ -30,7 +30,7 @@ export const Header = () => {
           <Box w={8} h={8} as="button" onClick={onLogoClick}>
             <BebLogo w={8} h={8} />
           </Box>
-          <Text fontWeight={"bold"}>YikYak Caster</Text>
+          <Text fontWeight={"bold"}>BEB x Farfessions</Text>
         </Box>
 
         <Box>

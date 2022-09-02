@@ -9,8 +9,12 @@ export const useCurrentAccountCommunityPermissions = () => {
     { loading: getCommunityLoading, error: getCommunityError, data },
   ] = useLazyQuery(GET_COMMUNITY_BY_DOMAIN);
 
-  const getCommunityByDomain = () => {
-    return _getCommunityByDomain();
+  const getCommunityByDomain = (bebdomain) => {
+    return _getCommunityByDomain({
+      variables: {
+        bebdomain,
+      },
+    });
   };
 
   /** Variables */
