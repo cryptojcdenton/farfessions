@@ -6,6 +6,8 @@ import { WalletContextProvider } from "../utils/context/WalletContext";
 import { AuthContextProvider } from "../utils/context/AuthContext";
 
 import { CreatePostInput } from "../components/post/CreatePostInput";
+import { Header } from "../components/navigation/Header";
+
 export default function Home() {
   return (
     <div>
@@ -16,6 +18,7 @@ export default function Home() {
       </Head>
       <WalletContextProvider>
         <AuthContextProvider>
+          <Header />
           <CreatePostInput />
         </AuthContextProvider>
       </WalletContextProvider>

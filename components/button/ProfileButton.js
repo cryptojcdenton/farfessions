@@ -29,6 +29,9 @@ export const ProfileButton = ({
     if (titleWhenConnected) return titleWhenConnected;
 
     if (!currentAccount) return "Sign in";
+    if (currentAccount?.identities?.farcaster?.username) {
+      return `${currentAccount.identities.farcaster.username}`;
+    }
     if (currentAccount?.username) {
       return `${currentAccount.username}`;
     }
@@ -75,8 +78,8 @@ export const ProfileButton = ({
           {size === "large" && titleWhenConnectedWithContext}
 
           <Avatar
-            src={currentAccount?.profileImage?.src}
-            name={currentAccount?.username}
+            src={currentAccount?.identities?.farcaster?.avatarUrl}
+            name={currentAccount?.identities?.farcaster?.displayName}
             size={size === "large" ? "sm" : "md"}
             ml={["0", null, size === "large" ? "2" : "0"]}
             backgroundColor="blackAlpha.900"
