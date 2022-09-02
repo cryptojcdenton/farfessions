@@ -1,11 +1,12 @@
 import React from "react";
 import { useRouter } from "next/router";
-
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, HStack, IconButton } from "@chakra-ui/react";
 
 import { useAuthContext } from "../../utils/context/AuthContext";
 
 import { BebLogo } from "../icon/BebLogo";
+import { Github } from "../icon/Github";
+
 import { ProfileButton } from "../button/ProfileButton";
 
 export const Header = () => {
@@ -37,12 +38,19 @@ export const Header = () => {
           <Text fontWeight={"bold"}>BEBfessions</Text>
         </Box>
 
-        <Box>
+        <HStack>
+          <IconButton
+            mr={2}
+            icon={<Github w="24px" h="24px" />}
+            href="https://github.com/ethjcdenton/bebfessions"
+            target="_blank"
+            as="a"
+          ></IconButton>
           <ProfileButton
             titleWhenDisconencted="Connect wallet"
             onClick={onSignin}
           />
-        </Box>
+        </HStack>
       </Box>
     </Box>
   );
