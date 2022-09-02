@@ -11,6 +11,7 @@ export const usePostFeed = () => {
       error: getPostFeedError,
       data,
       refetch: refetchPostFeed,
+      fetchMore,
     },
   ] = useLazyQuery(GET_POST_FEED);
 
@@ -31,6 +32,7 @@ export const usePostFeed = () => {
 
   return {
     getPostFeed,
+    fetchMore,
     refetchPostFeed,
     loading: loading,
     error: error,

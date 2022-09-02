@@ -1,6 +1,15 @@
 import React from "react";
-import { Box, VStack, Flex, Avatar, Text } from "@chakra-ui/react";
+import {
+  Box,
+  VStack,
+  Flex,
+  Avatar,
+  Text,
+  Spinner,
+  Center,
+} from "@chakra-ui/react";
 import * as dayjs from "dayjs";
+import InfiniteScroll from "react-infinite-scroll-component";
 import relativeTime from "dayjs/plugin/relativeTime";
 import updateLocale from "dayjs/plugin/updateLocale";
 
@@ -97,15 +106,50 @@ const Post = ({ createdAt, richContent, account }) => {
   );
 };
 export const PostFeed = () => {
-  const { getPostFeed, postFeed, loading, error } = usePostFeed();
+  const { getPostFeed, postFeed, loading, error, fetchMore } = usePostFeed();
+  const [isEnd, setIsEnd] = React.useState(false);
   React.useEffect(() => {
-    getPostFeed({ filters: { account: config.BOT_ID } });
+    getPostFeed({
+      filters: { account: config.BOT_ID },
+      sort: "lastActivity",
+    });
   }, []);
+
+  const next = () => {
+    if (loading) return;
+    return fetchMore({
+      variables: {
+        filters: { account: config.BOT_ID },
+        limit: 20,
+        offset: postFeed.length,
+        sort: "lastActivity",
+      },
+    }).then((res) => {
+      if (!res.data || res.data.getPostFeed.length < 20) {
+        setIsEnd(true);
+      }
+    });
+  };
+
   return (
-    <VStack>
-      {postFeed?.map((post) => (
-        <Post key={post._id} {...post} />
-      ))}
-    </VStack>
+    <InfiniteScroll
+      dataLength={postFeed?.length || 20}
+      next={next}
+      hasMore={true}
+      loader={
+        <Center>
+          <Box mt={2}>
+            <Spinner />
+          </Box>
+        </Center>
+      }
+      endMessage={<Text mt={2}>You are at the end!</Text>}
+    >
+      <VStack>
+        {postFeed?.map((post) => (
+          <Post key={post._id} {...post} />
+        ))}
+      </VStack>
+    </InfiniteScroll>
   );
 };
