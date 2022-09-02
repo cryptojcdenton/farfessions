@@ -47,7 +47,7 @@ export default function Home() {
               </Heading>
               <Text textAlign={"center"}>
                 Make sure to sign in with your connected Farcaster address. Only
-                Farcaster users can post to BEBcaster. We don't track who made
+                Farcaster users can post to BEBcaster. We do not track who made
                 the post.
               </Text>
               <CreatePostInput bebdomain={COMMUNITY_BEBDOMAIN} />
