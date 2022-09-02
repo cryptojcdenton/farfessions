@@ -46,7 +46,7 @@ export default function Home() {
                 Publish to Farcaster as Anon!
               </Heading>
               <CreatePostInput bebdomain={COMMUNITY_BEBDOMAIN} />
-              <PostFeed bebdomain={COMMUNITY_BEBDOMAIN} />
+              {/* <PostFeed bebdomain={COMMUNITY_BEBDOMAIN} /> */}
             </Box>
           </Box>
         </AuthContextProvider>
