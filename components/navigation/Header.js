@@ -2,8 +2,6 @@ import React from "react";
 import { useRouter } from "next/router";
 import { Box, Text, HStack, IconButton } from "@chakra-ui/react";
 
-import { useAuthContext } from "../../utils/context/AuthContext";
-
 import { BebLogo } from "../icon/BebLogo";
 import { Github } from "../icon/Github";
 
@@ -11,7 +9,6 @@ import { ProfileButton } from "../button/ProfileButton";
 
 export const Header = () => {
   const router = useRouter();
-  const { onSignin, activeAddress } = useAuthContext();
 
   const onLogoClick = () => {
     router.push("/");
@@ -48,7 +45,7 @@ export const Header = () => {
           ></IconButton>
           <ProfileButton
             titleWhenDisconencted="Connect wallet"
-            onClick={onSignin}
+            titleWhenConnected={"DEFAULT"}
           />
         </HStack>
       </Box>
