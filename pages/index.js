@@ -38,7 +38,7 @@ export default function Home() {
             <Box maxW="7xl" m="auto" w="100%">
               <Heading
                 color="#202021"
-                fontSize="6xl"
+                fontSize={["2xl", null, null, "6xl"]}
                 maxW="3xl"
                 m="auto"
                 textAlign={"center"}

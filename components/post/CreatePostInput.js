@@ -81,7 +81,7 @@ export const CreatePostInput = ({ bebdomain }) => {
       <Textarea
         border="none"
         fontSize={["2xl", null, null, "5xl"]}
-        height="sm"
+        height={["2xs", null, null, "xs"]}
         placeholder="Type here. Your post will be anonymous and public to the BEB network. The best post each day gets published to Farcaster."
         isRequired={true}
         value={value}
