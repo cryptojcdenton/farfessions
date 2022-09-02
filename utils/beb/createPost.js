@@ -8,7 +8,10 @@ import { CREATE_POST } from "../../gql/mutations/CREATE_POST";
  * @returns Promise<Boolean> - throw error if not authorized to write in community
  */
 
-export const createPost = async (client, { contentRaw, communityId }) => {
+export const createPost = async (
+  client,
+  { contentRaw, communityId, channelId }
+) => {
   if (!communityId) throw new Error("Missing community");
   if (!contentRaw) return;
   const { data } = await client.mutate({
@@ -16,6 +19,7 @@ export const createPost = async (client, { contentRaw, communityId }) => {
     variables: {
       communityId,
       contentRaw,
+      channelId,
     },
   });
   const post = data?.createPostOrReplyForAccount?.post;

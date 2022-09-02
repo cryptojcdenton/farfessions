@@ -20,11 +20,11 @@ export default async function handler(req, res) {
       const post = await createPost(botClient, {
         contentRaw: req.body.contentRaw,
         communityId: community._id,
+        channelId: req.body.channelId,
       });
 
       return res.status(200).json({ post });
     } catch (e) {
-      console.log(e);
       return res.status(500).json({ error: e.message });
     }
   } else {

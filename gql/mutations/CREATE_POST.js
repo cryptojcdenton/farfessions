@@ -3,10 +3,15 @@ import { CORE_ACCOUNT_FIELDS } from "../fragments/CORE_ACCOUNT_FIELDS";
 
 export const CREATE_POST = gql`
   ${CORE_ACCOUNT_FIELDS}
-  mutation CREATE_POST($communityId: ID, $contentRaw: String) {
+  mutation CREATE_POST(
+    $communityId: ID
+    $contentRaw: String
+    $chanelId: String
+  ) {
     createPostOrReplyForAccount(
       communityId: $communityId
       contentRaw: $contentRaw
+      chanelId: $chanelId
     ) {
       code
       success
