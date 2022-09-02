@@ -9,8 +9,14 @@ export const useCurrentAccount = () => {
     { loading: getAccountLoading, error: getAccountError, data },
   ] = useLazyQuery(GET_ACCOUNT_SIGNIN_MESSAGE);
 
-  const getAccountSigninMessage = () => {
-    return _getAccountSigninMessage();
+  const getAccountSigninMessage = ({ address, chainId }) => {
+    return _getAccountSigninMessage({
+      variables: {
+        address,
+        chainId,
+      },
+      skip: !address || !chainId,
+    });
   };
 
   /** Variables */
