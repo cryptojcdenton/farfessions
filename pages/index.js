@@ -6,9 +6,9 @@ import { AuthContextProvider } from "../utils/context/AuthContext";
 
 import { CreatePostInput } from "../components/post/CreatePostInput";
 import { Header } from "../components/navigation/Header";
+import { config } from "../utils/config";
 
-/** swap this out for yours */
-const COMMUNITY_BEBDOMAIN = "bebdomains";
+const COMMUNITY_BEBDOMAIN = config.COMMUNITY_BEBDOMAIN;
 
 export default function Home() {
   return (

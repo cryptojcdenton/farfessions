@@ -35,12 +35,14 @@ export const CreatePostInput = ({ bebdomain }) => {
       if (res.ok) {
         setValue("");
         toast({
+          position: "top",
           status: "success",
           title: "Success",
           description: "Post created!",
         });
       } else {
         toast({
+          position: "top",
           status: "error",
           title: "Error",
           description: "Something went wrong. Please try again.",

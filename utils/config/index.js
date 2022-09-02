@@ -2,6 +2,7 @@ export const dev = {
   AUTH_KEY: "beb-yikyak-auth-token-dev",
   SERVER_URI: "http://localhost:8080",
   COOKIE_DOMAIN: "localhost",
+  COMMUNITY_BEBDOMAIN: "bebdomains",
 };
 
 /**
@@ -13,6 +14,7 @@ export const prod = {
   SERVER_URI: "https://protocol.beb.xyz",
   AUTH_KEY: "beb-yikyak-auth-token-prod",
   COOKIE_DOMAIN: ".beb.to",
+  COMMUNITY_BEBDOMAIN: "bebcasters",
 };
 
 const config = process.env.NODE_ENV === "production" ? prod : dev;
