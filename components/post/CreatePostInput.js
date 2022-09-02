@@ -1,20 +1,27 @@
 import React from "react";
 import Cookies from "js-cookie";
-import { Box, Button, Textarea } from "@chakra-ui/react";
+import { Box, Button, Textarea, useToast } from "@chakra-ui/react";
 
 import { config } from "../../utils/config";
 
 import { MustBeSignedIn } from "../account/MustBeSignedIn";
+
 export const CreatePostInput = ({ bebdomain }) => {
   const [value, setValue] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+  const toast = useToast();
 
   const onSubmit = React.useCallback(
     async (value) => {
-      console.log(bebdomain);
       if (!value || !bebdomain) {
-        return;
+        return toast({
+          status: "error",
+          title: "Error",
+          description: "Value cannot be empty",
+        });
       }
-      const post = await fetch(`/api/community/${bebdomain}/post`, {
+      setLoading(true);
+      const res = await fetch(`/api/community/${bebdomain}/post`, {
         method: "POST",
         body: JSON.stringify({
           contentRaw: value,
@@ -24,9 +31,23 @@ export const CreatePostInput = ({ bebdomain }) => {
           authorization: `Bearer ${Cookies.get(config.AUTH_KEY)}`,
         },
       });
-      console.log(post);
+      setLoading(false);
+      if (res.ok) {
+        setValue("");
+        toast({
+          status: "success",
+          title: "Success",
+          description: "Post created!",
+        });
+      } else {
+        toast({
+          status: "error",
+          title: "Error",
+          description: "Something went wrong. Please try again.",
+        });
+      }
     },
-    [bebdomain]
+    [bebdomain, setValue, toast, setLoading]
   );
   return (
     <Box>
@@ -39,7 +60,9 @@ export const CreatePostInput = ({ bebdomain }) => {
         }}
       ></Textarea>
       <MustBeSignedIn>
-        <Button onClick={() => onSubmit(value)}>Create post</Button>
+        <Button isDisabled={loading} onClick={() => onSubmit(value)}>
+          Create post
+        </Button>
       </MustBeSignedIn>
     </Box>
   );
