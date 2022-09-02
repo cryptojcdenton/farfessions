@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { Heading } from "@chakra-ui/react";
+import { Heading, Box, Text } from "@chakra-ui/react";
 
 import { WalletContextProvider } from "../utils/context/WalletContext";
 import { AuthContextProvider } from "../utils/context/AuthContext";
@@ -24,9 +24,13 @@ export default function Home() {
       <WalletContextProvider>
         <AuthContextProvider>
           <Header />
-          <Heading>Hello!</Heading>
-          <CreatePostInput bebdomain={COMMUNITY_BEBDOMAIN} />
-          <PostFeed bebdomain={COMMUNITY_BEBDOMAIN} />
+          <Box display="flex" flexDir={"column"}>
+            <Box maxW="7xl" m="auto" w="100%">
+              <Heading fontSize="6xl">Anonymous Casters</Heading>
+              <CreatePostInput bebdomain={COMMUNITY_BEBDOMAIN} />
+              <PostFeed bebdomain={COMMUNITY_BEBDOMAIN} />
+            </Box>
+          </Box>
         </AuthContextProvider>
       </WalletContextProvider>
     </div>
