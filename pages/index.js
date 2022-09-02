@@ -24,9 +24,27 @@ export default function Home() {
       <WalletContextProvider>
         <AuthContextProvider>
           <Header />
-          <Box display="flex" flexDir={"column"}>
+          <Box display="flex" flexDir={"column"} py={8}>
+            <Box
+              backgroundImage="/banner.png"
+              w="100%"
+              h="5xl"
+              position="absolute"
+              zIndex={-1}
+              top={0}
+              backgroundSize={"cover"}
+              filter="blur(12px)"
+            ></Box>
             <Box maxW="7xl" m="auto" w="100%">
-              <Heading fontSize="6xl">Anonymous Casters</Heading>
+              <Heading
+                color="#202021"
+                fontSize="6xl"
+                maxW="3xl"
+                m="auto"
+                textAlign={"center"}
+              >
+                Publish to Farcaster as Anon!
+              </Heading>
               <CreatePostInput bebdomain={COMMUNITY_BEBDOMAIN} />
               <PostFeed bebdomain={COMMUNITY_BEBDOMAIN} />
             </Box>

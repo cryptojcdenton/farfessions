@@ -25,6 +25,10 @@ export const Header = () => {
         overflow={"hidden"}
         marginY="auto"
         p={4}
+        backdropBlur="48px"
+        border="1px solid"
+        borderColor={"whiteAlpha.400"}
+        backgroundColor={`whiteAlpha.600`}
       >
         <Box h="100%" display={"flex"} alignItems="center">
           <Box w={8} h={8} as="button" onClick={onLogoClick}>

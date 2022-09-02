@@ -56,20 +56,54 @@ export const CreatePostInput = ({ bebdomain }) => {
     [bebdomain, setValue, toast, setLoading]
   );
   return (
-    <Box>
+    <Box py={4}>
       <Textarea
-        h={"sm"}
-        placeholder="Type here..."
+        border="none"
+        fontSize={["2xl", null, null, "5xl"]}
+        height="sm"
+        placeholder="Type here. Your post will be anonymous and public to the network."
+        isRequired={true}
         value={value}
+        resize="none"
+        variant="unstyled"
+        color="#444448"
+        _placeholder={{
+          color: "#A9A8AE",
+        }}
+        backgroundColor="whiteAlpha.600"
+        px={4}
+        py={2}
+        fontWeight="light"
+        backdropBlur="48px"
+        backdropFilter={"auto"}
+        rounded="xl"
         onChange={(e) => {
           setValue(e.target.value);
         }}
       ></Textarea>
-      <MustBeSignedIn>
-        <Button isDisabled={loading} onClick={() => onSubmit(value)}>
-          Create post
-        </Button>
-      </MustBeSignedIn>
+      <Box w="100%" display="flex" justifyContent={"center"} py={4}>
+        <MustBeSignedIn>
+          <Button
+            isDisabled={loading}
+            onClick={() => onSubmit(value)}
+            px={16}
+            backgroundColor="#E7FFA4"
+            color="green.800"
+            _hover={{
+              backgroundColor: "#E7FFA4",
+              transform: "scale(1.05)",
+            }}
+            _focus={{
+              backgroundColor: "#E7FFA4",
+            }}
+            py={12}
+            fontSize="lg"
+            rounded="full"
+          >
+            Create post
+          </Button>
+        </MustBeSignedIn>
+      </Box>
     </Box>
   );
 };
