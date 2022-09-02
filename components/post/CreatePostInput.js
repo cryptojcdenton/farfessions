@@ -1,16 +1,28 @@
 import React from "react";
 import Cookies from "js-cookie";
-import { Box, Button, Textarea, useToast } from "@chakra-ui/react";
+import { Box, Button, Textarea, useToast, Text } from "@chakra-ui/react";
 
 import { client } from "../../utils/apollo/client";
 import { config } from "../../utils/config";
+import { useCurrentAccountCommunityPermissions } from "../../utils/hooks/graphql/useCurrentAccountCommunityPermissions";
 
 import { MustBeSignedIn } from "../account/MustBeSignedIn";
 
 export const CreatePostInput = ({ bebdomain }) => {
   const [value, setValue] = React.useState("");
   const [loading, setLoading] = React.useState(false);
+  const [community, setCommunity] = React.useState(null);
+  const { getCommunityByDomain } = useCurrentAccountCommunityPermissions();
   const toast = useToast();
+
+  React.useEffect(() => {
+    const init = async () => {
+      const { data } = await getCommunityByDomain(bebdomain);
+      const _community = data?.CommunityQuery?.getCommunityByDomainOrTokenId;
+      setCommunity(_community);
+    };
+    init();
+  }, [bebdomain]);
 
   const onSubmit = React.useCallback(
     async (value) => {
@@ -55,6 +67,7 @@ export const CreatePostInput = ({ bebdomain }) => {
     },
     [bebdomain, setValue, toast, setLoading]
   );
+
   return (
     <Box py={4}>
       <Textarea
@@ -83,25 +96,32 @@ export const CreatePostInput = ({ bebdomain }) => {
       ></Textarea>
       <Box w="100%" display="flex" justifyContent={"center"} py={4}>
         <MustBeSignedIn>
-          <Button
-            isDisabled={loading}
-            onClick={() => onSubmit(value)}
-            px={16}
-            backgroundColor="#E7FFA4"
-            color="green.800"
-            _hover={{
-              backgroundColor: "#E7FFA4",
-              transform: "scale(1.05)",
-            }}
-            _focus={{
-              backgroundColor: "#E7FFA4",
-            }}
-            py={12}
-            fontSize="lg"
-            rounded="full"
-          >
-            Create post
-          </Button>
+          <Box display="flex" flexDir="column">
+            <Button
+              isDisabled={loading || !community?.accountCommunity?.canWrite}
+              onClick={() => onSubmit(value)}
+              px={16}
+              backgroundColor="#E7FFA4"
+              color="green.800"
+              _hover={{
+                backgroundColor: "#E7FFA4",
+                transform: "scale(1.05)",
+              }}
+              _focus={{
+                backgroundColor: "#E7FFA4",
+              }}
+              py={12}
+              fontSize="lg"
+              rounded="full"
+            >
+              Create post
+            </Button>
+            {!community?.accountCommunity?.canWrite && (
+              <Text color="blackAlpha.500">
+                Your address cannot post in community
+              </Text>
+            )}
+          </Box>
         </MustBeSignedIn>
       </Box>
     </Box>
