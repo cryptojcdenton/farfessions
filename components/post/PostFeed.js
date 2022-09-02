@@ -25,7 +25,7 @@ export const PostFeed = ({ bebdomain }) => {
       await getPostFeed(community._id);
     };
     init();
-  }, [bebdomain, getCommunityByDomain, getPostFeed]);
+  }, [bebdomain]);
   return (
     <Box>
       {postFeed?.map((post) => (

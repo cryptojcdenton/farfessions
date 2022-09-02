@@ -13,11 +13,13 @@ export const MustBeSignedIn = ({ children }) => {
       {currentAccount ? (
         children
       ) : (
-        <Box>
+        <Box display="flex" flexDir="column" alignItems={"center"}>
           <Text color="text.secondary" mb={4}>
             You must be signed in to post
           </Text>
-          <ProfileButton onClick={onSignin} />
+          <Box>
+            <ProfileButton onClick={onSignin} />
+          </Box>
         </Box>
       )}
     </Box>
