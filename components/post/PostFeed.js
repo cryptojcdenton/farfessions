@@ -135,7 +135,7 @@ export const PostFeed = () => {
     <InfiniteScroll
       dataLength={postFeed?.length || 20}
       next={next}
-      hasMore={true}
+      hasMore={!isEnd}
       loader={
         <Center>
           <Box mt={2}>
