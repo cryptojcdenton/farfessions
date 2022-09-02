@@ -27,9 +27,6 @@ export const useAuthContext = () => React.useContext(AuthContext);
 export const AuthContextProvider = ({ children }) => {
   const [_loading, toggleLoading] = React.useState(false);
   const [_error, setError] = React.useState(null);
-
-  const { onCreateAccount: _onCreateAccount, error: createAccountError } =
-    useCreateAccount();
   const { onSignin: _onSignin, error: signinError } = useSignin();
   const { currentAddress, onSignMessage } = useWalletContext();
   const { getAccountSigninMessage } = useAccountSigninMessage();
@@ -41,8 +38,8 @@ export const AuthContextProvider = ({ children }) => {
   } = useCurrentAccount();
 
   const error = React.useMemo(() => {
-    return createAccountError || signinError || _error;
-  }, [createAccountError, signinError, _error]);
+    return signinError || _error;
+  }, [signinError, _error]);
   const loading = React.useMemo(() => {
     return currentAccountLoading || _loading;
   }, [currentAccountLoading, _loading]);
@@ -56,7 +53,7 @@ export const AuthContextProvider = ({ children }) => {
     }
   }, []);
 
-  const _onSignMessage = async (nonces) => {
+  const _onSignMessage = async (message) => {
     try {
       const signature = await onSignMessage(message);
       return signature;
@@ -73,7 +70,7 @@ export const AuthContextProvider = ({ children }) => {
       });
 
       if (!data?.authBySignature?.success) {
-        throw new Error("Unable to create account. Please try again later.");
+        throw new Error("Unable to sign in. Please try again later.");
       }
       Cookies.set(config.AUTH_KEY, data.authBySignature.accessToken, {
         domain: config.COOKIE_DOMAIN,
@@ -89,10 +86,12 @@ export const AuthContextProvider = ({ children }) => {
     setError(null);
     try {
       // 1. get message to sign
-      const message = await getAccountSigninMessage({
+      const { data } = await getAccountSigninMessage({
         address: currentAddress,
         chainId: 1,
       });
+
+      const message = data?.AccountQuery?.getAccountSigninMessage;
 
       // 2. sign message
       const signature = await _onSignMessage(message);
