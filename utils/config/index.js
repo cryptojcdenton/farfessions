@@ -1,5 +1,3 @@
-import BebRegistryBetaController from "./abis/BebRegistryBetaController.json";
-
 export const dev = {
   AUTH_KEY: "beb-yikyak-auth-token-dev",
   SERVER_URI: "http://localhost:8080",
