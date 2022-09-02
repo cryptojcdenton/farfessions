@@ -45,8 +45,12 @@ export default function Home() {
               >
                 Publish to Farcaster as Anon!
               </Heading>
+              <Text>
+                Make sure to sign in with your connected Farcaster address. Only
+                Farcaster users can post.
+              </Text>
               <CreatePostInput bebdomain={COMMUNITY_BEBDOMAIN} />
-              {/* <PostFeed bebdomain={COMMUNITY_BEBDOMAIN} /> */}
+              <PostFeed bebdomain={COMMUNITY_BEBDOMAIN} />
             </Box>
           </Box>
         </AuthContextProvider>
