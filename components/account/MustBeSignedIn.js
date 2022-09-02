@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Text, Box } from "@chakra-ui/react";
 
 import { ProfileButton } from "../button/ProfileButton";
 
@@ -14,6 +14,9 @@ export const MustBeSignedIn = ({ children }) => {
         children
       ) : (
         <Box>
+          <Text color="text.secondary" mb={4}>
+            You must be signed in to post
+          </Text>
           <ProfileButton onClick={onSignin} />
         </Box>
       )}

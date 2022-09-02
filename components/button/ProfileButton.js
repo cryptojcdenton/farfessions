@@ -17,11 +17,17 @@ import { shortenAddress } from "../../utils/helpers/shorten-address";
 
 export const ProfileButton = ({
   titleWhenDisconencted = "Connect wallet",
+  titleWhenConnected,
   onClick,
   size = "large",
 }) => {
   const { currentAccount, loading, onSignOut } = useAuthContext();
   const titleWhenConnectedWithContext = React.useMemo(() => {
+    // return default short address if no title is provided
+    if (titleWhenConnected === "DEFAULT")
+      return shortenAddress(currentAccount?.address?.address) || null;
+    if (titleWhenConnected) return titleWhenConnected;
+
     if (!currentAccount) return "Sign in";
     if (currentAccount?.username) {
       return `${currentAccount.username}`;
@@ -31,7 +37,7 @@ export const ProfileButton = ({
     }
 
     return null;
-  }, [currentAccount]);
+  }, [titleWhenConnected, currentAccount]);
 
   const showWalletButton = React.useMemo(() => {
     if (loading) return false;
