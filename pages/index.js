@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { Heading, Box, Text } from "@chakra-ui/react";
+import { Heading, Box, Text, Button } from "@chakra-ui/react";
 
 import { WalletContextProvider } from "../utils/context/WalletContext";
 import { AuthContextProvider } from "../utils/context/AuthContext";
@@ -46,10 +46,29 @@ export default function Home() {
                 Talk about Farcaster anonymously!
               </Heading>
               <Text textAlign={"center"}>
-                Make sure to sign in with your connected Farcaster address. Only
-                Farcaster users can post to BEBcaster. We do not track who made
-                the post.
+                Only Farcaster users can post. We do not track who made the post
+                <Button
+                  ml={2}
+                  as="a"
+                  variant="link"
+                  href="https://github.com/ethjcdenton/bebfessions"
+                  target="_blank"
+                >
+                  (the code is open-sourced).
+                </Button>
               </Text>
+              <Box display={"flex"}>
+                <Button
+                  textDecor={"underline"}
+                  m="auto"
+                  as="a"
+                  variant="link"
+                  href="https://bebdotxyz.notion.site/How-to-set-up-Farfession-for-your-community-3adbd5e1a1b349dcb720dfdd5787e66b"
+                  target="_blank"
+                >
+                  Guide on how to deploy your own Farfession
+                </Button>
+              </Box>
               <CreatePostInput bebdomain={COMMUNITY_BEBDOMAIN} />
               <PostFeed bebdomain={COMMUNITY_BEBDOMAIN} />
             </Box>
