@@ -6,9 +6,9 @@ import { createPost } from "../../../../utils/beb/createPost";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const secret = req.headers.authorization?.slice(7) || "";
-    // the client is authenticated as the actual user
+    // This client is authenticated as the actual user
     const userClient = createClient(secret);
-    // the client is authenticated as the bot
+    // this client is authenticated as the bot
     const botClient = createClient(process.env.BOT_AUTH_KEY);
     try {
       // 1. check if the user is authorized to write to the community
