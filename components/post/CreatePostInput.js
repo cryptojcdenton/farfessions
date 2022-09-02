@@ -118,7 +118,7 @@ export const CreatePostInput = ({ bebdomain }) => {
             </Button>
             {!community?.accountCommunity?.canWrite && (
               <Text color="blackAlpha.500">
-                Your address cannot post in community
+                Your address does not have permission to post
               </Text>
             )}
           </Box>
