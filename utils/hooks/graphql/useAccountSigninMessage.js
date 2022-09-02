@@ -3,7 +3,7 @@ import { useLazyQuery } from "@apollo/client";
 
 import { GET_ACCOUNT_SIGNIN_MESSAGE } from "../../../gql/queries/GET_ACCOUNT_SIGNIN_MESSAGE";
 
-export const useCurrentAccount = () => {
+export const useAccountSigninMessage = () => {
   const [
     _getAccountSigninMessage,
     { loading: getAccountLoading, error: getAccountError, data },

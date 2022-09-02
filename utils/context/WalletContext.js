@@ -9,7 +9,7 @@ import { useAccount, useProvider, useSignMessage } from "wagmi";
 export const WalletContext = React.createContext({
   loading: false,
   error: null,
-  onSignMessage: () => {},
+  onSignMessage: async () => {},
   provider: null,
   currentAddress: null,
 });
