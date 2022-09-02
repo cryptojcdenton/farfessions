@@ -104,7 +104,7 @@ export const PostFeed = ({ bebdomain }) => {
       const community = data?.CommunityQuery?.getCommunityByDomainOrTokenId;
       if (!community) return;
 
-      await getPostFeed(community._id);
+      await getPostFeed({ filters: { community: community._id } });
     };
     init();
   }, [bebdomain]);
