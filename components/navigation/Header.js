@@ -35,7 +35,7 @@ export const Header = () => {
           <Box w={8} h={8} as="button" onClick={onLogoClick}>
             <BebLogo w={8} h={8} />
           </Box>
-          <Text fontWeight={"bold"}>BEBfessions</Text>
+          <Text fontWeight={"bold"}>Farcaster BEBfessions</Text>
         </Box>
 
         <HStack>

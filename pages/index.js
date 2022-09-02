@@ -43,7 +43,7 @@ export default function Home() {
                 m="auto"
                 textAlign={"center"}
               >
-                Publish to BEBcaster as Anon!
+                Talk about Farcaster as Anon!
               </Heading>
               <Text textAlign={"center"}>
                 Make sure to sign in with your connected Farcaster address. Only
