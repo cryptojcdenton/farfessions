@@ -1,12 +1,14 @@
 import React from "react";
 import Head from "next/head";
-import { Text } from "@chakra-ui/react";
 
 import { WalletContextProvider } from "../utils/context/WalletContext";
 import { AuthContextProvider } from "../utils/context/AuthContext";
 
 import { CreatePostInput } from "../components/post/CreatePostInput";
 import { Header } from "../components/navigation/Header";
+
+/** swap this out for yours */
+const COMMUNITY_BEBDOMAIN = "bebdomains";
 
 export default function Home() {
   return (
@@ -19,7 +21,7 @@ export default function Home() {
       <WalletContextProvider>
         <AuthContextProvider>
           <Header />
-          <CreatePostInput />
+          <CreatePostInput bebdomain={COMMUNITY_BEBDOMAIN} />
         </AuthContextProvider>
       </WalletContextProvider>
     </div>
