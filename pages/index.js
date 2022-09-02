@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>BEBfessions</title>
+        <title>Farcaster BEBfessions</title>
         <meta name="description" content="Anon feedback app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
