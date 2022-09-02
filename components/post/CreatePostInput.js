@@ -6,23 +6,31 @@ import { client } from "../../utils/apollo/client";
 import { config } from "../../utils/config";
 import { useCurrentAccountCommunityPermissions } from "../../utils/hooks/graphql/useCurrentAccountCommunityPermissions";
 
+import { useAuthContext } from "../../utils/context/AuthContext";
+
 import { MustBeSignedIn } from "../account/MustBeSignedIn";
 
 export const CreatePostInput = ({ bebdomain }) => {
   const [value, setValue] = React.useState("");
   const [loading, setLoading] = React.useState(false);
-  const [community, setCommunity] = React.useState(null);
-  const { getCommunityByDomain } = useCurrentAccountCommunityPermissions();
+  const { loading: authLoading } = useAuthContext();
+  const {
+    getCommunityByDomain,
+    community,
+    loading: communityLoading,
+  } = useCurrentAccountCommunityPermissions();
   const toast = useToast();
 
   React.useEffect(() => {
-    const init = async () => {
-      const { data } = await getCommunityByDomain(bebdomain);
-      const _community = data?.CommunityQuery?.getCommunityByDomainOrTokenId;
-      setCommunity(_community);
-    };
-    init();
+    getCommunityByDomain(bebdomain);
   }, [bebdomain]);
+
+  const isDisabled = React.useMemo(() => {
+    return !community?.accountCommunity?.canWrite;
+  }, [community]);
+  const isLoading = React.useMemo(() => {
+    return authLoading || loading || communityLoading;
+  }, [authLoading, communityLoading, loading]);
 
   const onSubmit = React.useCallback(
     async (value) => {
@@ -98,7 +106,9 @@ export const CreatePostInput = ({ bebdomain }) => {
         <MustBeSignedIn>
           <Box display="flex" flexDir="column">
             <Button
-              isDisabled={loading || !community?.accountCommunity?.canWrite}
+              isLoading={isLoading}
+              loadingText="Loading..."
+              isDisabled={isDisabled}
               onClick={() => onSubmit(value)}
               px={16}
               backgroundColor="#E7FFA4"
@@ -116,7 +126,7 @@ export const CreatePostInput = ({ bebdomain }) => {
             >
               Create post
             </Button>
-            {!community?.accountCommunity?.canWrite && (
+            {!isLoading && isDisabled && (
               <Text color="blackAlpha.500">
                 Your address does not have permission to post
               </Text>

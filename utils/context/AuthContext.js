@@ -99,6 +99,10 @@ export const AuthContextProvider = ({ children }) => {
       await _onSigninAndSetCookie(signature);
       // 4. get current account info
       await refetchCurrentAccount();
+      // 5. refetch all queries
+      await client.refetchQueries({
+        include: "active",
+      });
 
       toggleLoading(false);
     } catch (e) {
