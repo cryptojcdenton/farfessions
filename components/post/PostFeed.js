@@ -5,7 +5,8 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import updateLocale from "dayjs/plugin/updateLocale";
 
 import { usePostFeed } from "../../utils/hooks/graphql/usePostFeed";
-import { useCurrentAccountCommunityPermissions } from "../../utils/hooks/graphql/useCurrentAccountCommunityPermissions";
+// import { useCurrentAccountCommunityPermissions } from "../../utils/hooks/graphql/useCurrentAccountCommunityPermissions";
+import { config } from "../../utils/config";
 
 dayjs.extend(relativeTime);
 dayjs.extend(updateLocale);
@@ -95,19 +96,11 @@ const Post = ({ createdAt, richContent, account }) => {
     </Box>
   );
 };
-export const PostFeed = ({ bebdomain }) => {
+export const PostFeed = () => {
   const { getPostFeed, postFeed, loading, error } = usePostFeed();
-  const { getCommunityByDomain } = useCurrentAccountCommunityPermissions();
   React.useEffect(() => {
-    const init = async () => {
-      const { data } = await getCommunityByDomain(bebdomain);
-      const community = data?.CommunityQuery?.getCommunityByDomainOrTokenId;
-      if (!community) return;
-
-      await getPostFeed({ filters: { community: community._id } });
-    };
-    init();
-  }, [bebdomain]);
+    getPostFeed({ filters: { account: config.BOT_ID } });
+  }, []);
   return (
     <VStack>
       {postFeed?.map((post) => (

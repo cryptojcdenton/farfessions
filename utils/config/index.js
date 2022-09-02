@@ -3,6 +3,7 @@ export const dev = {
   SERVER_URI: "http://localhost:8080",
   COOKIE_DOMAIN: "localhost",
   COMMUNITY_BEBDOMAIN: "bebdomains",
+  BOT_ID: process.env.NEXT_PUBLIC_BOT_ID,
 };
 
 /**
@@ -15,6 +16,7 @@ export const prod = {
   AUTH_KEY: "beb-yikyak-auth-token-prod",
   COOKIE_DOMAIN: ".farfessions.xyz",
   COMMUNITY_BEBDOMAIN: "bebcaster",
+  BOT_ID: process.env.NEXT_PUBLIC_BOT_ID,
 };
 
 const config = process.env.NODE_ENV === "production" ? prod : dev;
