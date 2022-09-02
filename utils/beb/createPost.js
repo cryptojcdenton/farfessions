@@ -19,6 +19,7 @@ export const createPost = async (
     variables: {
       communityId,
       contentRaw,
+      contentHtml: `<p>${contentRaw}</p>`,
       channelId,
     },
   });

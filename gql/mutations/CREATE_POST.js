@@ -6,11 +6,13 @@ export const CREATE_POST = gql`
   mutation CREATE_POST(
     $communityId: ID
     $contentRaw: String
+    $contentHtml: String
     $channelId: String
   ) {
     createPostOrReplyForAccount(
       communityId: $communityId
       contentRaw: $contentRaw
+      contentHtml: $contentHtml
       channelId: $channelId
     ) {
       code
